@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="report.css">
+    <title>Shawpot Report</title>
+</head>
+
+<body>
+
+    <% data.forEach((dt,ind) => { %>
+
+
+    <div class="jumbotron jumbotron-fluid text-center report">
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col"># <%= ind+1 %></th>
+                    <th><%= dt.vendor %></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-weight-bold" colspan="1">IP</td>
+                    <td><%= dt.ip %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Mac</td>
+                    <td><%= dt.mac %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">State</td>
+                    <% if (dt.state == 'up') { %>
+                    <td class="green"><%= dt.state.toUpperCase() %></td>
+                    <% } else { %>
+                    <td class="red"><%= dt.state.toUpperCase() %></td>
+                    <% } %>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Reason</td>
+                    <td><%= dt.reason %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Device</td>
+                    <td><%= dt.device %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Vendor</td>
+                    <td><%= dt.vendor %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Time</td>
+                    <td><%= dt.time %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Scan time</td>
+                    <td><%= dt.elapsedtime %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Up Hosts</td>
+                    <td><%= dt.uphosts %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Down Hosts</td>
+                    <td><%= dt.downhosts %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Total Hosts</td>
+                    <td><%= dt.totalhosts %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Ports</td>
+                    <td class="font-weight-bold">Status</td>
+                </tr>
+                <% if (typeof(dt.ports) == 'string') {%>
+                <tr>
+                    <td class="font-weight-bold"><%= dt.ports %></td>
+                    <% if (dt.pstates == 'open') { %>
+                    <td class="green"><%= dt.pstates.toUpperCase() %></td>
+                    <% } else { %>
+                    <td class="red"><%= dt.pstates.toUpperCase() %></td>
+                    <% } %>
+                </tr>
+                <% } else {%>
+                <% dt.ports.forEach((port,ind) => { %>
+                <tr>
+                    <td class="font-weight-bold"><%= port %></td>
+                    <% if (dt.pstates[ind] == 'open') { %>
+                    <td class="green"><%= dt.pstates[ind].toUpperCase() %></td>
+                    <% } else { %>
+                    <td class="red"><%= dt.pstates[ind].toUpperCase() %></td>
+                    <% } %>
+                </tr>
+                <% }); %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <%   }); %>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
