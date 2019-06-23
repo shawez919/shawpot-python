@@ -1,0 +1,30 @@
+
+.home {
+    height: calc(100vh);
+    margin-bottom: 0;
+}
+
+.header {
+    font-size: 2rem;
+}
+
+.info {
+    font-size: 1.3rem;
+    padding: 0.4rem 0;
+}
+
+.infobtn {
+    padding: 1rem;
+}
+
+.red {
+    color: #F21905;
+}
+
+.blue {
+    color: #0554F2;
+}
+
+.green {
+    color: rgb(78, 184, 3);
+}
