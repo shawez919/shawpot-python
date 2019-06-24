@@ -7,7 +7,6 @@ import nmap
 import requests
 import json
 
-#Convert a string of 6 characters of ethernet address into a dash separated hex string
 def eth_addr (a) :
     b = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(a[0]) , ord(a[1]) , ord(a[2]), ord(a[3]), ord(a[4]) , ord(a[5]))
     return b
@@ -30,7 +29,6 @@ def getInput():
 def writeLog(client, data=''):
 	separator = '='*50
 	fopen = open('./honey.txt', 'a') 
-	# print('Time: {}\nIP: {}\nPort: {}\nData: {}\n{}\n\n'.format(time.ctime(), client[0], client[1], data.decode('utf-8'), separator))
 	fopen.write('Time: {}\nIP: {}\nPort: {}\nData: {}\n{}\n\n'.format(time.ctime(), client[0], client[1], data.decode('utf-8'), separator))
 	fopen.close()
 
