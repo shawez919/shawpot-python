@@ -106,11 +106,9 @@ def main(host, port):
 				postreq['pstates'].append('NA')
 
 			print('\n\n\n---------------\n',postreq,'\n--------------\n')
-			# print('\n\n\n---------------\n',json.dumps(postreq),'\n--------------\n')
 
 			resp = requests.post(url="http://localhost:8080/intruder",data = postreq);
 			print(resp)
-			#print(nm.csv())
 
         
 
