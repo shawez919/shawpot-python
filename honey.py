@@ -4,6 +4,7 @@ import socket, sys
 from struct import *
 import nmap
 import requests
+import time 
 
 def eth_addr (a) :
     b = "%.2x:%.2x:%.2x:%.2x:%.2x:%.2x" % (ord(a[0]) , ord(a[1]) , ord(a[2]), ord(a[3]), ord(a[4]) , ord(a[5]))
@@ -91,15 +92,42 @@ def main(host, port):
 
 			res = nm.scan(hosts=address[0], arguments='-n -sP -PE -sV -PA"0-65535"')
 			print(type(res),res)
-			postreq['mac'] = res['scan'][address[0]]['addresses']['mac']
-			postreq['time'] = res['nmap']['scanstats']['timestr']
-			postreq['elapsedtime'] = res['nmap']['scanstats']['elapsed']
-			postreq['reason'] = res['scan'][address[0]]['status']['reason']
-			postreq['state'] = res['scan'][address[0]]['status']['state']
-			postreq['vendor'] = res['scan'][address[0]]['vendor'][postreq['mac']]
-			postreq['uphosts'] = res['nmap']['scanstats']['uphosts']
-			postreq['downhosts'] = res['nmap']['scanstats']['downhosts']
-			postreq['totalhosts'] = res['nmap']['scanstats']['totalhosts']
+			try:
+				postreq['mac'] = res['scan'][address[0]]['addresses']['mac']
+			except:
+				postreq['mac'] = 'NA'
+			try:
+				postreq['time'] = res['nmap']['scanstats']['timestr']
+			except:
+				postreq['time'] = 'NA'
+			try:
+				postreq['elapsedtime'] = res['nmap']['scanstats']['elapsed']
+			except:
+				postreq['elapsedtime'] = 'NA'
+			try:
+				postreq['reason'] = res['scan'][address[0]]['status']['reason']
+			except:
+				postreq['reason'] = 'NA'
+			try:
+				postreq['state'] = res['scan'][address[0]]['status']['state']
+			except:
+				postreq['state'] = 'NA'
+			try:
+				postreq['vendor'] = res['scan'][address[0]]['vendor'][postreq['mac']]
+			except:
+				postreq['vendor'] = 'NA'
+			try:
+				postreq['uphosts'] = res['nmap']['scanstats']['uphosts']
+			except:
+				postreq['uphosts'] = 'NA'
+			try:
+				postreq['downhosts'] = res['nmap']['scanstats']['downhosts']
+			except:
+				postreq['downhosts'] = 'NA'
+			try:
+				postreq['totalhosts'] = res['nmap']['scanstats']['totalhosts']
+			except:
+				postreq['totalhosts'] = 'NA'
 
 			if len(postreq['ports']) == 0:
 				postreq['ports'].append('None')
